@@ -9,6 +9,7 @@ TODO {
 
 NODO {
   EB only collides with Player when PB is active. It is now a feature, because it makes the game more interesting.
+  Figured out why that happened. I messed up the functions.
 }
 */
 
@@ -240,8 +241,8 @@ void loop() {
 
     aclamp(player_x, 10, 124);    // Clamp player position to gameplay area
 
-    if (flags & 0b00000100) player_colli();               // If PB active, check collision
-    if (flags & 0b00001000) enemy_colli();                // If EB active, check collision
+    if (flags & 0b00001000) player_colli();               // If PB active, check collision
+    if (flags & 0b00000100) enemy_colli();                // If EB active, check collision
 
     if (!(board[0] || board[1] || board[2])) flags |= 0b10010000;      // If all enemies dead, modified Game Over
 

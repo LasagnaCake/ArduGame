@@ -1,6 +1,6 @@
-#include <Arduino.h>          // What allows programming on the Arduino
-#include "TVout.h"            // What allows the Arduino to create a composite signal
-#include "../lib/data.h"      // Where the sprites & characters are stored
+#include <Arduino.h>                                    // What allows programming on the Arduino
+#include "../.pio/libdeps/uno/TVout/TVout.h"            // What allows the Arduino to create a composite signal
+#include "../lib/data.h"                                // Where the sprites & characters are stored
 
 /*
 TODO {
@@ -8,8 +8,7 @@ TODO {
 }
 
 NODO {
-  EB only collides with Player when PB is active. It is now a feature, because it makes the game more interesting.
-  Figured out why that happened. I messed up the functions.
+
 }
 */
 

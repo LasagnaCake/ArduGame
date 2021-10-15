@@ -8,8 +8,7 @@ TODO {
 }
 
 NODO {
-  Collision (EB -> Player) Works under mysterious manners, seemingly at random.
-  It is a feature, now.
+  EB only collides with Player when PB is active. It is now a feature, because it makes the game more interesting.
 }
 */
 

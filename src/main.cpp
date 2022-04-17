@@ -104,8 +104,8 @@ void game_over() {
 
   // Draws the GAME OVER text
   if (!(flags & 0b00010000)) {
-  for (uint8_t chr = 0; chr < 4; chr++) bitmap8(SCREEN_OFFSET_X + (chr * 8) - 80, 68, text[chr]);
-  for (uint8_t chr = 4; chr < 8; chr++) bitmap8(SCREEN_OFFSET_X + (chr * 8 + 8) - 80, 68, text[chr]);
+    for (uint8_t chr = 0; chr < 4; chr++) bitmap8(SCREEN_OFFSET_X + (chr * 8) - 80, 68, text[chr]);
+    for (uint8_t chr = 4; chr < 8; chr++) bitmap8(SCREEN_OFFSET_X + (chr * 8 + 8) - 80, 68, text[chr]);
   }
   // Draws the score above the Game Over text
   bitmap8(SCREEN_OFFSET_X +  0 - 80, 60, text[8]);
@@ -175,13 +175,15 @@ void player_colli() {
 */
 
 void setup() {
-  DDRD |= 0b00000000;           // Sets the appropriate pins (2, 3, 4) to Input
+  DDRD |= 0b00100000;           // Sets the appropriate pins (2, 3, 4) to Input and (5) Output
   tv.begin(NTSC);               // Begin with default size screen
 
   randomSeed(PINC);     // Seed the RNG with noise from analog pin 0
   tv.draw_rect(SCREEN_OFFSET_X - 84, 55, 80, 24, 1, 0);
 
   tv.delay_frame(60);     // Wait 1 sec. before beginning
+
+  PORTD |= 0b00000000;      // Set pin 5 LOW
 }
 
 void loop() {
@@ -251,7 +253,8 @@ void loop() {
     draw_frame();     // Draw main game screen
   }
   else {
-    game_over();            // Draw Game Over screen
-    tv.delay_frame(59);     // Wait just shy of 1 second
+    PORTD |= 0b00100000;      // Set pin 5 HIGH
+    game_over();              // Draw Game Over screen
+    tv.delay_frame(59);       // Wait just shy of 1 second
   }
 }
